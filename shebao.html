@@ -11,17 +11,81 @@
  
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+	function jisuan1(){
+		//第一步获取文本框的输入内容
+		var writein = document.getElementById("gongzi").value;
+		//第二步对文本框输入的数字进行表单验证
+		var regExp1 = /^[0-9]{4,5}$/;
+		if(!regExp1.test(writein))
+		{
+			document.getElementById("gongzi").value = "您输入的字符有误！输入的字符应为4-5位数字";
+			document.getElementById("gongzi").style = "color:red";
+			return;
+		}
+		//第三步进行计算
+		var write1 = parseInt(writein);
+		var geren0 = write1 * 0.08;
+		var geren1 = write1 * 0.2;
+		
+		var yiliao0 = write1 * 0.02;
+		var yiliao1 = write1 * 0.06;
+		
+		var sygr0 = write1 * 0.005;
+		var sygr1 = write1 * 0.015;
+		
+		var gsgs = write1 * 0.005;
+		
+		var shengygs = write1 * 0.008;
+		
+		var gjggr = write1 * 0.12;
+		var gjggs = write1 * 0.12;
+		
+		var grhj = geren0 + yiliao0 + sygr0 + gjggr;
+		var gshj = geren1 + yiliao1 + sygr1 + gsgs + shengygs + gjggs;
+		var total = write1 + gshj;
+		//第四步将计算结果填入表格空白处
+		document.getElementById("ylgr").innerHTML = geren0;
+		document.getElementById("ylgs").innerHTML = geren1;
+		
+		document.getElementById("yilgr").innerHTML = yiliao0;
+		document.getElementById("yilgs").innerHTML = yiliao1;
+		
+		document.getElementById("sygr").innerHTML = sygr0;
+		document.getElementById("sygs").innerHTML = sygr1;
+		
+		document.getElementById("gsgs").innerHTML = gsgs;
+		
+		document.getElementById("shengygs").innerHTML = shengygs;
+		
+		document.getElementById("gjjgr").innerHTML = gjggr;
+		document.getElementById("gjggs").innerHTML = gjggs;
+		
+		document.getElementById("hjgr").innerHTML = grhj;
+		document.getElementById("hjgs").innerHTML = gshj;
+		
+		document.getElementById("zonge").innerHTML = total;
+	}
+	
+	
+	function clear1()
+	{
+		document.getElementById("gongzi").value  = '';
+		document.getElementById("gongzi").style = "color:black";
+	}
+	
+</script>
 	</head>
 	<body>
 		<div class="container text-center">
-		<img class="img-circle"  width="200" height=200 src="2AACD75E3D55955E46875A59C02E4891.png" />
+		<img class="img-circle"  width="200" height=200 src= "nuc.png">
 		</div>
 		<div class="container text-center">
 			<table class="table table-bordered table table-striped">
 			<tr>
 				<td>工资</td>
-				<td colspan="3"><input id="gongzi" class="form-control" type="text" placeholder="请输入个人工资"></td>
-			    <td><button class="btn btn-danger btn-block">计算</button></td>
+				<td colspan="3"><input onfocus="clear1()" id="gongzi" class="form-control" type="text" placeholder="请输入个人工资"></td>
+			    <td><button onclick="jisuan1()"  class="btn btn-danger btn-block">计算</button></td>
 			</tr>
 			
 			<tr>
@@ -35,25 +99,25 @@
 			<tr>
 				<td>养老</td>
 				<td>8%</td>
-				<td></td>
+				<td id="ylgr"></td>
 				<td>20%</td>
-				<td></td>
+				<td id="ylgs"></td>
 			</tr>
 			
 			<tr>
 				<td>医疗</td>
 				<td>2%</td>
-				<td></td>
+				<td id="yilgr"></td>
 				<td>6%</td>
-				<td></td>
+				<td id="yilgs"></td>
 			</tr>
 			
 			<tr>
 				<td>失业</td>
 				<td>0.5%</td>
-				<td></td>
+				<td id="sygr"></td>
 				<td>1.5%</td>
-				<td></td>
+				<td id="sygs"></td>
 			</tr>
 			
 			<tr>
@@ -61,7 +125,7 @@
 				<td></td>
 				<td></td>
 				<td>0.5%</td>
-				<td></td>
+				<td id="gsgs"></td>
 			</tr>
 			
 			<tr>
@@ -69,28 +133,28 @@
 				<td></td>
 				<td></td>
 				<td>0.8%</td>
-				<td></td>
+				<td id="shengygs"></td>
 			</tr>
 			
 			<tr>
 				<td>公积金</td>
 				<td>12%</td>
-				<td></td>
+				<td id="gjjgr"></td>
 				<td>12%</td>
-				<td></td>
+				<td id="gjggs"></td>
 			</tr>
 			
 			<tr>
 				<td>合计</td>
 				<td>个人合计</td>
-				<td></td>
+				<td id="hjgr"></td>
 				<td>公司合计</td>
-				<td></td>
+				<td id="hjgs"></td>
 			</tr>
 			
 			<tr>
 				<td>总额</td>
-				<td colspan="4"></td>
+				<td id="zonge" colspan="4"></td>
 			</tr>
 			</table>
 			开发者：2013041714 高翊翔 中北大学
